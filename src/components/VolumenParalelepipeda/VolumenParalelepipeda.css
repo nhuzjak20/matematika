@@ -1,0 +1,19 @@
+*{
+    background-color: aqua;
+    margin: 0;
+    padding: 0;
+}
+
+.Vektori-za-unos{
+    display: flex;
+    align-items: center;
+    width: 50%;
+}
+
+.Vektori-za-unos div input{
+    width: 50%;
+}
+
+.znak {
+    width: min-content;
+}
