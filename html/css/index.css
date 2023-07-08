@@ -1,0 +1,22 @@
+*{
+    border-style: solid;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+nav { 
+    grid-area: 1 / 1 / 2 / 5; 
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+aside { grid-area: 2 / 1 / 5 / 2; }
+main { grid-area: 2 / 2 / 5 / 5; }
