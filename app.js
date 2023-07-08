@@ -77,35 +77,23 @@ app.post('/RijesiPrviZadatak',urlencodedParser ,(req, res)=>{
 
 app.post('/dodaj_zadatak',urlencodedParser , (req, res) => {
     if(req.body.zadatak == 4){
-        const salji = `<form hx-post="/vektorskiProdukt" hx-target="#nize" hx-swap="afterend">
-        <div id="nize">
-            <div class="cijeli-vektor">
-                <h5>Vektor <h5 contenteditable="true">B</h5> = </h5>
-                <div><h1>(</h1></div>
-                <div><input type="number" name="Vektor1"></div>
-                <div><h1>,</h1></div>
-                <div><input type="number" name="Vektor1"></div>
-                <div><h1>,</h1></div>
-                <div><input type="number" name="Vektor1"></div>
-                <div><h1>)</h1></div>
-            </div>
-            <div class="cijeli-vektor">
-                <h5>Vektor <h5 contenteditable="true">C</h5> = </h5>
-                <div><h1>(</h1></div>
-                <div><input type="number" name="Vektor2"></div>
-                <div><h1>,</h1></div>
-                <div><input type="number" name="Vektor2"></div>
-                <div><h1>,</h1></div>
-                <div><input type="number" name="Vektor2"></div>
-                <div><h1>)</h1></div>
-            </div>
-            <div class="centriraj"><button type="submit">Izračunaj</button></div>
-            
-        </div>
-        
-    </form>`
-        res.send(salji)
+        res.sendFile(__dirname + '/html/templates/Ispit/prvi-zadatak/vektorskiProdukt.html');
     }
+})
+
+app.get('/IspitDrugiZadatak', (req, res) => {
+    res.sendFile(__dirname + '/html/templates/Ispit/drugi-zadatak/zadatak.html');
+})
+
+app.post('/IspitDrugiRijesenje', urlencodedParser, (req, res) => {
+    const vSmjer1 = req.body.smjer1
+    const vSmjer2 = req.body.smjer2
+    const VTocka1 = req.body.tocka1
+    const VTocka2 = req.body.tocka2
+    console.log(vSmjer1)
+    const posalji = `<h5 class="margina-mala">S1(${vSmjer1[0]},${vSmjer1[1]}, ${vSmjer1[2]})</h5>
+    <h5 class="margina-mala">S2(${vSmjer2[0]},${vSmjer2[1]}, ${vSmjer2[2]})</h5>`
+    res.send(posalji)
 })
 
 app.post('/vektorskiProdukt',urlencodedParser , (req, res) => {
