@@ -1,14 +1,14 @@
 <div>
     <div>
-        <form hx-post="/RijesiPrviZadatak">
+        <form hx-post="/RijesiPrviZadatak" target="#volumen">
             <div class="cijeli-vektor">
                 <h1>Vektor A = </h1>
                 <div><h1>(</h1></div>
                 <div><input type="number" name="PrviPrvi" id="PrviPrvi"></div>
                 <div><h1>,</h1></div>
-                <div><input type="number" name="PrviDrugi"></div>
+                <div><input type="number" name="PrviDrugi" id="PrviDrugi"></div>
                 <div><h1>,</h1></div>
-                <div><input type="number" name="PrviTreci"></div>
+                <div><input type="number" name="PrviTreci" id="PrviTreci"></div>
                 <div><h1>)</h1></div>
             </div>
             <div class="cijeli-vektor">
@@ -34,4 +34,5 @@
             <button type="submit">Podnesi zadatak</button>
         </form>
     </div>
+    <div id="volumen"></div>
 </div>

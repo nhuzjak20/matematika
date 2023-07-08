@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const v = require('vec3')
 const app = express();
 const bodyParser = require('body-parser')
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
@@ -23,8 +24,14 @@ app.get('/IspitPrviZadatak', (req, res)=>{
 })
 
 app.post('/RijesiPrviZadatak',urlencodedParser ,(req, res)=>{
-    //console.log("Radi")
-    console.log(req.body.PrviPrvi)
+    console.log(req.body.PrviDrugi)
+    const prviVektor = v(req.body.PrviPrvi, req.body.PrviDrugi, req.body.PrviTreci)
+    const drugiVektor = v(req.body.DrugiPrvi, req.body.DrugiDrugi, req.body.DrugiTreci)
+    const treciVektor = v(req.body.TreciPrvi, req.body.TreciDrugi, req.body.TreciTreci)
+    const privremeno = treciVektor.cross(drugiVektor)
+    const rezultat = privremeno.dot(prviVektor)
+    console.log(rezultat)
+    res.send("<h2>Rezultat je " + rezultat + "</h2>")
 })
 
 app.listen(5000, ()=>{
