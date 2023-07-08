@@ -1,38 +1,55 @@
 <div>
-    <div>
-        <form hx-post="/RijesiPrviZadatak" target="#volumen">
-            <div class="cijeli-vektor">
-                <h1>Vektor A = </h1>
-                <div><h1>(</h1></div>
-                <div><input type="number" name="PrviPrvi" id="PrviPrvi"></div>
-                <div><h1>,</h1></div>
-                <div><input type="number" name="PrviDrugi" id="PrviDrugi"></div>
-                <div><h1>,</h1></div>
-                <div><input type="number" name="PrviTreci" id="PrviTreci"></div>
-                <div><h1>)</h1></div>
+    <form hx-post="/dodaj_zadatak" hx-target="#operacije" hx-swap="beforeend">
+        <div class="poravnaj">
+            <select name="zadatak" id="zadatak">
+                <option value="2">Baza</option>
+                <option value="3">Visina Tetraedra</option>
+                <option value="4">Vektorski produkt</option>
+            </select>
+            <button type="submit">Dodaj zadatak</button>
+        </div>
+    </form>
+    <div class="poravnaj-around" id="operacije">
+        <form hx-post="/RijesiPrviZadatak" target="#volumen" >
+            <div class="poravnaj">
+                <div>
+                    <div class="cijeli-vektor">
+                        <h5>Vektor <h5 contenteditable="true">A</h5> = </h5>
+                        <div><h1>(</h1></div>
+                        <div><input type="number" name="PrviPrvi" id="PrviPrvi"></div>
+                        <div><h1>,</h1></div>
+                        <div><input type="number" name="PrviDrugi" id="PrviDrugi"></div>
+                        <div><h1>,</h1></div>
+                        <div><input type="number" name="PrviTreci" id="PrviTreci"></div>
+                        <div><h1>)</h1></div>
+                    </div>
+                    <div class="cijeli-vektor">
+                        <h5>Vektor <h5 contenteditable="true">B</h5> = </h5>
+                        <div><h1>(</h1></div>
+                        <div><input type="number" name="DrugiPrvi"></div>
+                        <div><h1>,</h1></div>
+                        <div><input type="number" name="DrugiDrugi"></div>
+                        <div><h1>,</h1></div>
+                        <div><input type="number" name="DrugiTreci"></div>
+                        <div><h1>)</h1></div>
+                    </div>
+                    <div class="cijeli-vektor">
+                        <h5>Vektor <h5 contenteditable="true">C</h5> = </h5>
+                        <div><h1>(</h1></div>
+                        <div><input type="number" name="TreciPrvi"></div>
+                        <div><h1>,</h1></div>
+                        <div><input type="number" name="TreciDrugi"></div>
+                        <div><h1>,</h1></div>
+                        <div><input type="number" name="TreciTreci"></div>
+                        <div><h1>)</h1></div>
+                    </div>
+                </div>
             </div>
-            <div class="cijeli-vektor">
-                <h1>Vektor B = </h1>
-                <div><h1>(</h1></div>
-                <div><input type="number" name="DrugiPrvi""></div>
-                <div><h1>,</h1></div>
-                <div><input type="number" name="DrugiDrugi"></div>
-                <div><h1>,</h1></div>
-                <div><input type="number" name="DrugiTreci"></div>
-                <div><h1>)</h1></div>
+            <div class="centriraj-djecu">
+                <button type="submit" class="centriraj">Podnesi zadatak</button>
             </div>
-            <div class="cijeli-vektor">
-                <h1>Vektor C = </h1>
-                <div><h1>(</h1></div>
-                <div><input type="number" name="TreciPrvi"></div>
-                <div><h1>,</h1></div>
-                <div><input type="number" name="TreciDrugi"></div>
-                <div><h1>,</h1></div>
-                <div><input type="number" name="TreciTreci"></div>
-                <div><h1>)</h1></div>
-            </div>
-            <button type="submit">Podnesi zadatak</button>
         </form>
+
     </div>
     <div id="volumen"></div>
 </div>
