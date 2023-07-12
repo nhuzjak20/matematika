@@ -89,10 +89,97 @@ app.post('/IspitDrugiRijesenje', urlencodedParser, (req, res) => {
     const vSmjer1 = req.body.smjer1
     const vSmjer2 = req.body.smjer2
     const VTocka1 = req.body.tocka1
+    const OrgTocka1 = req.body.tocka1
+    const OrgTocka2 = req.body.tocka2
     const VTocka2 = req.body.tocka2
-    console.log(vSmjer1)
-    const posalji = `<h5 class="margina-mala">S1(${vSmjer1[0]},${vSmjer1[1]}, ${vSmjer1[2]})</h5>
-    <h5 class="margina-mala">S2(${vSmjer2[0]},${vSmjer2[1]}, ${vSmjer2[2]})</h5>`
+    for(var i = 0; i<3; i++){
+        VTocka1[i] = VTocka1[i]* -1
+        VTocka2[i] = VTocka2[i]* -1
+        if(VTocka1[i]>0){
+            VTocka1[i] = "+" + VTocka1[i] 
+        }
+        if(VTocka2[i]>0){
+            VTocka2[i] = "+" + VTocka2[i]
+        }
+    }
+    console.log("Vtocka1 je " + VTocka1)
+    const v1 = v(vSmjer1[0], vSmjer1[1], vSmjer1[2])
+    const v2 = v(vSmjer2[0], vSmjer2[1], vSmjer2[2])
+    const v1xv2 = v1.cross(v2)
+    const Npravac1Tocka = OrgTocka1.map(x => x * -1)
+    const Npravac2Tocka = OrgTocka2.map(x => x * -1)
+    console.log("vSmjer1 je : " + vSmjer1)
+
+    console.log("Npravac1Tocka je " + Npravac1Tocka)
+    for(var i = 0; i<3; i++){
+        if(Npravac1Tocka[i]>0){
+            Npravac1Tocka[i] = "+" + Npravac1Tocka[i] 
+        }
+        if(Npravac2Tocka[i]>0){
+            Npravac2Tocka[i] = "+" + Npravac2Tocka[i]
+        }
+    }
+    console.log("Npravac1Tocka je " + Npravac1Tocka)
+    console.log("Npravac2Tocka je " + Npravac2Tocka)
+    console.log("Vtocka2 je " + VTocka2)
+    const posalji = `<div class="poravnaj">
+    <div>
+        <h6>Vektori smjera:</h6>
+        <h5 class="margina-mala">S1(${vSmjer1[0]},${vSmjer1[1]}, ${vSmjer1[2]})</h5>
+        <h5 class="margina-mala">S2(${vSmjer2[0]},${vSmjer2[1]}, ${vSmjer2[2]})</h5>
+    </div>
+    <div>
+        <h6>Točke:</h6>
+        <h5 class="margina-mala">T1(${OrgTocka1[0]}, ${OrgTocka1[1]}, ${OrgTocka1[2]})</h5>
+        <h5 class="margina-mala">T1(${OrgTocka2[0]}, ${OrgTocka2[1]}, ${OrgTocka2[2]})</h5>
+    </div>
+</div>
+<div class="poravnaj">
+    <h5>S1</h5><h5>X</h5><h5>S2</h5><h5>=</h5><h5>(${v1xv2.x}, ${v1xv2.y}, ${v1xv2.z})</h5>
+</div>
+<div>
+    <div class="poravnaj">
+        <div>
+            <h5>P1...</h5>
+        </div>
+        <div class="stupac">
+            <div>
+                <h6>X = ${vSmjer1[0]}p ${VTocka1[0]}</h6>
+            </div>
+            <div>
+                <h6>Y = ${vSmjer1[1]}p ${VTocka1[1]}</h6>
+            </div>
+            <div>
+                <h6>Z = ${vSmjer1[2]}p ${VTocka1[2]}</h6>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="poravnaj">
+            <h5>P2...</h5>
+        </div>
+        <div class="stupac">
+            <div>
+                <h6>X = ${vSmjer2[0]}u ${VTocka2[0]}</h6>
+            </div>
+            <div>
+                <h6>Y = ${vSmjer2[1]}u ${VTocka2[1]}</h6>
+            </div>
+            <div>
+                <h6>Z = ${vSmjer2[2]}u ${VTocka2[2]}</h6>
+            </div>
+        </div>
+    </div>
+    <div class="stupac">
+    <div>
+        <h5>N1 = (${vSmjer1[0]}t ${VTocka1[0]}, ${vSmjer1[1]}t ${VTocka1[1]}, ${vSmjer1[2]}t ${VTocka1[2]} )</h5></div>
+        <div><h5>N2 = (${vSmjer2[0]}u ${VTocka2[0]}, ${vSmjer2[1]}u ${VTocka2[1]}, ${vSmjer2[2]}u ${VTocka2[2]} )</h5>
+    </div>
+</div>
+<div class="centriraj">
+    <h5>N1N2 = ((${vSmjer2[0]}u ${VTocka2[0]}) - (${vSmjer1[0]}t ${VTocka1[0]}),(${vSmjer2[1]}u ${VTocka2[1]}) - (${vSmjer1[1]}t ${VTocka1[1]}), (${vSmjer2[2]}u ${VTocka2[2]}) - (${vSmjer1[2]}t ${VTocka1[2]}))</h5>
+</div>
+</div>`
     res.send(posalji)
 })
 

@@ -1,2 +1,62 @@
-<h5>S1(${vSmjer1[0]},${vSmjer1[1]}, ${vSmjer1[2]})</h5>
-<h5>S2(${vSmjer2[0]},${vSmjer2[1]}, ${vSmjer2[2]})</h5>
+<script>
+    console.log("-2" + 1)
+</script>
+
+<div class="poravnaj">
+    <div>
+        <h6>Vektori smjera:</h6>
+        <h5 class="margina-mala">S1(${vSmjer1[0]},${vSmjer1[1]}, ${vSmjer1[2]})</h5>
+        <h5 class="margina-mala">S2(${vSmjer2[0]},${vSmjer2[1]}, ${vSmjer2[2]})</h5>
+    </div>
+    <div>
+        <h6>Točke:</h6>
+        <h5 class="margina-mala">T1(${OrgTocka1[0]}, ${OrgTocka1[1]}, ${OrgTocka1[2]})</h5>
+        <h5 class="margina-mala">T1(${OrgTocka2[0]}, ${OrgTocka2[1]}, ${OrgTocka2[2]})</h5>
+    </div>
+</div>
+<div class="poravnaj">
+    <h5>S1</h5><h5>X</h5><h5>S2</h5><h5>=</h5><h5>(${v1xv2.x}, ${v1xv2.y}, ${v1xv2.y})</h5>
+</div>
+<div>
+    <div class="poravnaj">
+        <div>
+            <h5>P1...</h5>
+        </div>
+        <div class="stupac">
+            <div>
+                <h6>X = ${vSmjer1[0]} ${VTocka1[0]}</h6>
+            </div>
+            <div>
+                <h6>Y = ${vSmjer1[1]} ${VTocka1[1]}</h6>
+            </div>
+            <div>
+                <h6>Z = ${vSmjer1[2]} ${VTocka1[2]}</h6>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div>
+            <h5>P2...</h5>
+        </div>
+        <div class="stupac">
+            <div>
+                v@almAr135
+                <h6>X = ${vSmjer2[0]} ${VTocka2[0]}</h6>
+            </div>
+            <div>
+                <h6>Y = ${vSmjer2[1]} ${VTocka2[1]}</h6>
+            </div>
+            <div>
+                <h6>Z = ${vSmjer2[2]} ${VTocka2[2]}</h6>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="stupac">
+    <div><h5>N1 = (${vSmjer1[0]}t ${StringPravac1[0]}, ${vSmjer1[1]}t ${StringPravac1[1]}, ${vSmjer1[2]} ${StringPravac1[2]} )</h5></div>
+    <div><h5>N1 = (${vSmjer2[0]} ${StringPravac2[0]}, ${vSmjer2[1]} ${StringPravac2[1]}, ${vSmjer2[2]} ${StringPravac2[2]} )</h5></div>
+</div>
+
+<div>
+    <h5>N1N2 = ((${vSmjer1[0]}t ${VTocka1[0]}) - (${vSmjer2[0]}t ${VTocka2[0]}),(${vSmjer1[1]}t ${VTocka1[1]}) - (${vSmjer2[1]}t ${VTocka2[1]}), (${vSmjer1[2]}t ${VTocka1[2]}) - (${vSmjer2[2]}t ${VTocka2[2]}))</h5>
+</div>
