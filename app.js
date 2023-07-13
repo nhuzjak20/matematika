@@ -109,8 +109,17 @@ app.post('/IspitDrugiRijesenje', urlencodedParser, (req, res) => {
     const Npravac1Tocka = OrgTocka1.map(x => x * -1)
     const Npravac2Tocka = OrgTocka2.map(x => x * -1)
     console.log("vSmjer1 je : " + vSmjer1)
-
+    const NoviVektorSmjera1 = vSmjer1.map(x => x * -1)
+    const CijelaBrojka = [0, 0, ]
+    const privremenizbroj= OrgTocka1.map(x => x * -1)
+    for(var i = 0; i < 3; i++){
+        CijelaBrojka[i] = privremenizbroj[i] + OrgTocka2[i] 
+    }
+    console.log("Orginalna točka 2 je " + OrgTocka2)
+    console.log("Privremeni zbroj je " + privremenizbroj)
+    console.log("Zbroj Tocaka za kraj je: " + CijelaBrojka)
     console.log("Npravac1Tocka je " + Npravac1Tocka)
+    console.log("Vektorski zbroj je: " + v1xv2)
     for(var i = 0; i<3; i++){
         if(Npravac1Tocka[i]>0){
             Npravac1Tocka[i] = "+" + Npravac1Tocka[i] 
@@ -178,6 +187,11 @@ app.post('/IspitDrugiRijesenje', urlencodedParser, (req, res) => {
 </div>
 <div class="centriraj">
     <h5>N1N2 = ((${vSmjer2[0]}u ${VTocka2[0]}) - (${vSmjer1[0]}t ${VTocka1[0]}),(${vSmjer2[1]}u ${VTocka2[1]}) - (${vSmjer1[1]}t ${VTocka1[1]}), (${vSmjer2[2]}u ${VTocka2[2]}) - (${vSmjer1[2]}t ${VTocka1[2]}))</h5>
+</div>
+<div>
+    <h5>${Npravac1Tocka[0]}t ${Npravac2Tocka[0]}u ${CijelaBrojka[0]} = ${v1xv2.x}& </h5>
+    <h5>${Npravac1Tocka[1]}t ${Npravac2Tocka[1]}u ${CijelaBrojka[1]} = ${v1xv2.y}& </h5>
+    <h5>${Npravac1Tocka[2]}t ${Npravac2Tocka[2]}u ${CijelaBrojka[2]} = ${v1xv2.z}& </h5>
 </div>
 </div>`
     res.send(posalji)
