@@ -3,6 +3,7 @@ const path = require('path');
 const v = require('vec3')
 const app = express();
 const bodyParser = require('body-parser')
+const math = require('mathjs')
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
 app.use(express.static(path.join(__dirname, 'html')))
 
@@ -216,6 +217,12 @@ app.post('/vektorskiProdukt',urlencodedParser , (req, res) => {
         <h5>=</h5>
         <h5>(${rezultat.x}, ${rezultat.y}, ${rezultat.z})</h5>
     </div>`
+    res.send(vrati)
+})
+
+app.get('/IspitTreciZadatak', (req, res)=>{
+    const xDerivacija = math.derivative('x^2 - y^2 -14x + 10y', 'x').toString()
+    const vrati = ``
     res.send(vrati)
 })
 
