@@ -3,7 +3,9 @@ const path = require('path');
 const v = require('vec3')
 const app = express();
 const bodyParser = require('body-parser')
-const math = require('mathjs')
+const nerdamer = require('nerdamer/all')
+const math = require('mathjs');
+const { type } = require('os');
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
 app.use(express.static(path.join(__dirname, 'html')))
 
@@ -220,11 +222,101 @@ app.post('/vektorskiProdukt',urlencodedParser , (req, res) => {
     res.send(vrati)
 })
 
+
+
 app.get('/IspitTreciZadatak', (req, res)=>{
     const xDerivacija = math.derivative('x^2 - y^2 -14x + 10y', 'x').toString()
+    const xJednadba = xDerivacija + ' = 0'
+    console.log(nerdamer.solve(xJednadba, 'x').toString())
+
     const vrati = ``
+    res.sendFile(__dirname + '/html/templates/Ispit/treci-zadatak/zadatak.html')
+})
+
+app.post('/ispitTreciRijesenje',urlencodedParser ,(req, res)=>{
+    const jednadba = req.body.jednadba
+    //derivacija po x
+    const xDerivacija = math.derivative(jednadba, 'x')
+    
+    //Rijesenje x jednadbe
+    const BrojkaX = nerdamer.solve(xDerivacija, 'x').toString().replace(/[\[\]]/g, '')
+    const xRijesenje = parseInt(BrojkaX)
+    //Derivacija po y
+    const yDerivacija = math.derivative(jednadba, 'y')
+    console.log(yDerivacija.toString())
+    //Rijesenje y jednadbe
+    const BrojkaY = nerdamer.solve(yDerivacija, 'y').toString().replace(/[\[\]]/g, '')
+    console.log(BrojkaY)
+    const yRijesenje = parseInt(BrojkaY)
+    console.log(typeof yRijesenje)
+    const RijesenaJednadba = math.evaluate(jednadba, {x:xRijesenje, y:yRijesenje}).toString()
+    var JednadbaPostupak = jednadba.replace(/[xy]/g, function(match) {
+        if (match === "x") {
+          return xRijesenje.toString();
+        } else if (match === "y") {
+          return yRijesenje.toString();
+        }
+      });
+
+    console.log(RijesenaJednadba)
+    console.log(JednadbaPostupak)
+    const vrati = `<div class="poravnaj">
+    <div>
+        <div class="stupac">
+            <h5>${xDerivacija} = 0</h5>
+            <h5>x = ${xRijesenje}</h5>
+        </div>
+        <div class="stupac">
+            <h5>${yDerivacija} = 0</h5>
+            <h5>y = ${yRijesenje}</h5>
+        </div>
+    </div>
+</div>`
     res.send(vrati)
 })
+
+app.get('/IspitCetvrtiZadatak', (req, res)=>{
+    res.sendFile(__dirname + '/html/templates/Ispit/cetvrti-zadatak/zadatak.html')
+})
+
+app.post('/IspitCetvrtiZadatakRijesenje',urlencodedParser ,(req, res)=>{
+    try{
+        nerdamer.set('SOLUTIONS_AS_OBJECT', true);
+        const jednadbe = req.body.Jednadbe
+        const tocka = req.body.tocka
+        var JednadbeZaRijesit = [jednadbe[0] + ' = ' + tocka[0], jednadbe[1] + ' = ' + tocka[1], jednadbe[2] + ' = ' + tocka[2]]
+        console.log(JednadbeZaRijesit)
+        console.log(nerdamer.solveEquations(JednadbeZaRijesit))
+        console.log(nerdamer.solveEquations(JednadbeZaRijesit).toString())
+        res.send( `
+    <div class="centriraj stupac">
+        <div class="stupac">
+            <h5>${JednadbeZaRijesit[0]}</h5>
+            <h5>${JednadbeZaRijesit[1]}</h5>
+            <h5>${JednadbeZaRijesit[2]}</h5>
+        </div>
+    </div>
+    `)
+    } catch(error){
+        nerdamer.set('SOLUTIONS_AS_OBJECT', true);
+        const jednadbe = req.body.Jednadbe
+        const tocka = req.body.tocka
+        var JednadbeZaRijesit = [jednadbe[0] + ' = ' + tocka[0], jednadbe[1] + ' = ' + tocka[1], jednadbe[2] + ' = ' + tocka[2]]
+        console.log(error)
+        console.log("Neradi")
+        res.send( `
+    <div class="centriraj stupac">
+        <div class="stupac">
+            <h5>${JednadbeZaRijesit[0]}</h5>
+            <h5>${JednadbeZaRijesit[1]}</h5>
+            <h5>${JednadbeZaRijesit[2]}</h5>
+            <p>*Kod je izbacio error, ovdje su ti izbačene jednadbe, to ti je sustav jednadbi pa rijesis i dobis U i V</p>
+        </div>
+    </div>
+    `)
+    }
+})
+
 
 app.listen(5000, ()=>{
     console.log("Server radi")
