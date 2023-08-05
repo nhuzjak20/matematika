@@ -146,3 +146,35 @@
     </div>
 </form>
 <div id="VektorskiProduktRijesenje"></div>
+
+<div class="poravnaj">
+    <div class="stupac margina-mala">
+        <h5>Derivacija po X</h5>
+        <h5>${xDerivacija}</h5>
+    </div>
+    <div class="stupac margina-mala">
+        <h5>Derivacija po Y</h5>
+        <h5>${yDerivacija}</h5>
+    </div>
+</div>
+<div class="stupac">
+    <p>Uneses x i y od točke u deriviranu jednadbu</p>
+    <p>*π(pi) se piše da uključiš CAPSLOCK, držiš ALT i upišeš 227 sa keypadom(brojevi desno, ne ovi u redu)</p>
+</div>
+<div>
+    <h5>Prva točka je = ${TockaRijesenje1}</h5>
+    <h5>Druga točka je = ${TockaRijesenje2}</h5>
+</div>
+<form hx-post="/GradijentPomocno" class="poravnaj" hx-target="#pomocno">
+    <h5>u = </h5>
+    <input type="number" name="vektor" id="">
+    <h5>i   </h5>
+    <input type="number" name="vektor" id="">
+    <h5>j</h5>
+</form>
+<div id="pomocno">
+    
+</div>
+
+
+
