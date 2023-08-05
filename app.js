@@ -280,7 +280,129 @@ app.get('/IspitCetvrtiZadatak', (req, res)=>{
 })
 
 app.post('/IspitCetvrtiZadatakRijesenje',urlencodedParser ,(req, res)=>{
-    try{
+    const jednadbe = req.body.Jednadbe
+    nerdamer.set('SOLUTIONS_AS_OBJECT', true);
+    const tocka = req.body.tocka
+    var JednadbeZaRijesit = [jednadbe[0] + ' = ' + tocka[0], jednadbe[1] + ' = ' + tocka[1], jednadbe[2] + ' = ' + tocka[2]]
+    console.log(JednadbeZaRijesit)
+    const uDerivacije = [math.derivative(jednadbe[0], 'u'), math.derivative(jednadbe[1], 'u'), math.derivative(jednadbe[2], 'u')]
+    const vDerivacije = [math.derivative(jednadbe[0], 'v'), math.derivative(jednadbe[1], 'v'), math.derivative(jednadbe[2], 'v')]
+    try {
+        
+        //console.log(JednadbeZaRijesit)
+        console.log(nerdamer.solveEquations(JednadbeZaRijesit).toString())
+        /*
+        res.send (`
+        <div class="centriraj stupac">
+        <div class="stupac">
+            <h5>${JednadbeZaRijesit[0]}</h5>
+            <h5>${JednadbeZaRijesit[1]}</h5>
+            <h5>${JednadbeZaRijesit[2]}</h5>
+        </div>
+    </div>
+    <h5>Parcijalno deriviraj svaku jednadbu</h5>
+    <div class="poravnaj">
+    <div class="stupac">
+        <h5>Derivacija po U</h5>
+        <div class="stupac">
+            <h5>1. ${uDerivacije[0]}</h5>
+            <h5>2. ${uDerivacije[1]}</h5>
+            <h5>3. ${uDerivacije[2]}</h5>
+        </div>
+    </div>
+    <div class="stupac">
+        <h5>Derivacija po V</h5>
+        <div class="stupac">
+            <h5>1. ${vDerivacije[0]}</h5>
+            <h5>2. ${vDerivacije[1]}</h5>
+            <h5>3. ${vDerivacije[0]}</h5>
+        </div>
+    </div>
+    </div>
+        `) */
+    } catch (e) {
+        console.log(e)
+        console.log("Ne radi")
+        res.write('<p>*Kod je izbacio error, ovdje su ti izbačene jednadbe, to ti je sustav jednadbi pa rijesis i dobis U i V</p>')
+    }
+    
+    console.log(uDerivacije.toString())
+    res.send(`
+    <div class="centriraj stupac">
+    <div class="stupac">
+        <h5>${JednadbeZaRijesit[0]}</h5>
+        <h5>${JednadbeZaRijesit[1]}</h5>
+        <h5>${JednadbeZaRijesit[2]}</h5>
+    </div>
+    </div>
+    <h5>Parcijalno deriviraj svaku jednadbu</h5>
+    <div class="poravnaj">
+    <div class="stupac">
+    <h5>Derivacija po U</h5>
+    <div class="stupac margina-srednja width-max">
+        <h5>${JednadbeZaRijesit[0]} -> ${uDerivacije[0]}</h5>
+        <h5>${JednadbeZaRijesit[1]} -> ${uDerivacije[1]}</h5>
+        <h5>${JednadbeZaRijesit[2]} -> ${uDerivacije[2]}</h5>
+    </div>
+    </div>
+    <div class="stupac margina-srednja width-max">
+        <h5>Derivacija po V</h5>
+        <div class="stupac margina-srednja width-max">
+            <h5>${JednadbeZaRijesit[0]} -> ${vDerivacije[0]}</h5>
+            <h5>${JednadbeZaRijesit[1]} -> ${vDerivacije[1]}</h5>
+            <h5>${JednadbeZaRijesit[2]} -> ${vDerivacije[2]}</h5>
+        </div>
+    </div>
+    </div>
+        <div class="poravnaj margina-mala">
+        <h5>(${vDerivacije[0]}, ${vDerivacije[1]}, ${vDerivacije[2]})</h5>
+        <h5>X</h5>
+        <h5>(${uDerivacije[0]} ,${uDerivacije[1]}, ${uDerivacije[2]})</h5>
+    </div>
+    <div class="margina-mala">
+        <p>*izbaci nepoznanice iz deriviranog i izračunaj vektorski produkt u kalkulatoru dolje i dobio si visinu normale na plohu</p>
+    </div>
+        <form hx-post="/vektorskiProdukt" hx-target="#VektorskiProduktRijesenje">
+        <div id="nize">
+            <div class="cijeli-vektor">
+                <h5>Vektor A</h5>
+                <div><h1>(</h1></div>
+                <div><input type="number" name="Vektor1"></div>
+                <div><h1>,</h1></div>
+                <div><input type="number" name="Vektor1"></div>
+                <div><h1>,</h1></div>
+                <div><input type="number" name="Vektor1"></div>
+                <div><h1>)</h1></div>
+            </div>
+            <div class="cijeli-vektor">
+                <h5>Vektor B</h5>
+                <div><h1>(</h1></div>
+                <div><input type="number" name="Vektor2"></div>
+                <div><h1>,</h1></div>
+                <div><input type="number" name="Vektor2"></div>
+                <div><h1>,</h1></div>
+                <div><input type="number" name="Vektor2"></div>
+                <div><h1>)</h1></div>
+            </div>
+            <div class="centriraj"><button type="submit">Izračunaj</button></div>
+        </div>
+    </form>
+    <div id="VektorskiProduktRijesenje"></div>
+    `)
+})
+
+app.get('/gradijentFunkcije', (req, res)=>{
+    
+})
+
+
+app.listen(5000, ()=>{
+    console.log("Server radi")
+})
+
+/* 
+
+ try{
         nerdamer.set('SOLUTIONS_AS_OBJECT', true);
         const jednadbe = req.body.Jednadbe
         const tocka = req.body.tocka
@@ -288,6 +410,9 @@ app.post('/IspitCetvrtiZadatakRijesenje',urlencodedParser ,(req, res)=>{
         console.log(JednadbeZaRijesit)
         console.log(nerdamer.solveEquations(JednadbeZaRijesit))
         console.log(nerdamer.solveEquations(JednadbeZaRijesit).toString())
+        const uDerivacije = [math.derivative(JednadbeZaRijesit[0], 'u'), math.derivative(JednadbeZaRijesit[1], 'u'), math.derivative(JednadbeZaRijesit[2], 'u')]
+        const vDerivacije = [math.derivative(JednadbeZaRijesit[0], 'v'), math.derivative(JednadbeZaRijesit[1], 'v'), math.derivative(JednadbeZaRijesit[2], 'v')]
+        
         res.send( `
     <div class="centriraj stupac">
         <div class="stupac">
@@ -295,6 +420,25 @@ app.post('/IspitCetvrtiZadatakRijesenje',urlencodedParser ,(req, res)=>{
             <h5>${JednadbeZaRijesit[1]}</h5>
             <h5>${JednadbeZaRijesit[2]}</h5>
         </div>
+    </div>
+    <h5>Parcijalno deriviraj svaku jednadbu</h5>
+    <div class="poravnaj">
+    <div class="stupac">
+        <h5>Derivacija po U</h5>
+        <div class="stupac">
+            <h5>1. ${uDerivacije[0]}</h5>
+            <h5>2. ${uDerivacije[1]}</h5>
+            <h5>3. ${uDerivacije[2]}</h5>
+        </div>
+    </div>
+    <div class="stupac">
+        <h5>Derivacija po V</h5>
+        <div class="stupac">
+            <h5>1. ${vDerivacije[0]}</h5>
+            <h5>2. ${vDerivacije[1]}</h5>
+            <h5>3. ${vDerivacije[0]}</h5>
+        </div>
+    </div>
     </div>
     `)
     } catch(error){
@@ -304,6 +448,18 @@ app.post('/IspitCetvrtiZadatakRijesenje',urlencodedParser ,(req, res)=>{
         var JednadbeZaRijesit = [jednadbe[0] + ' = ' + tocka[0], jednadbe[1] + ' = ' + tocka[1], jednadbe[2] + ' = ' + tocka[2]]
         console.log(error)
         console.log("Neradi")
+        try{
+            
+            console.log(nerdamer.diff())
+        } catch(error){
+            console.log("Greška je kod operacija")
+        }
+        //const uDerivacije = [math.derivative(JednadbeZaRijesit[0], 'u'), math.derivative(JednadbeZaRijesit[1], 'u'), math.derivative(JednadbeZaRijesit[2], 'u')]
+        //const vDerivacije = [math.derivative(JednadbeZaRijesit[0], 'v'), math.derivative(JednadbeZaRijesit[1], 'v'), math.derivative(JednadbeZaRijesit[2], 'v')]
+        //console.log(uDerivacije)
+        //console.log(vDerivacije)
+        uDerivacije = 1
+        vDerivacije = 2
         res.send( `
     <div class="centriraj stupac">
         <div class="stupac">
@@ -313,11 +469,26 @@ app.post('/IspitCetvrtiZadatakRijesenje',urlencodedParser ,(req, res)=>{
             <p>*Kod je izbacio error, ovdje su ti izbačene jednadbe, to ti je sustav jednadbi pa rijesis i dobis U i V</p>
         </div>
     </div>
+    <h5>Parcijalno deriviraj svaku jednadbu</h5>
+    <div class="poravnaj">
+    <div class="stupac">
+        <h5>Derivacija po U</h5>
+        <div class="stupac">
+            <h5>1. ${uDerivacije[0]}</h5>
+            <h5>2. ${uDerivacije[1]}</h5>
+            <h5>3. ${uDerivacije[2]}</h5>
+        </div>
+    </div>
+    <div class="stupac">
+        <h5>Derivacija po V</h5>
+        <div class="stupac">
+            <h5>1. ${vDerivacije[0]}</h5>
+            <h5>2. ${vDerivacije[1]}</h5>
+            <h5>3. ${vDerivacije[0]}</h5>
+        </div>
+    </div>
+    </div>
     `)
     }
-})
 
-
-app.listen(5000, ()=>{
-    console.log("Server radi")
-})
+*/

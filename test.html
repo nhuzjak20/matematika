@@ -89,3 +89,60 @@
         <p>*Kod je izbacio error, ovdje su ti izbačene jednadbe, to ti je sustav jednadbi pa rijesis i dobis U i V</p>
     </div>
 </div>
+
+<h5>Parcijalno deriviraj svaku jednadbu</h5>
+
+<div class="poravnaj">
+    <div class="stupac">
+        <h5>Derivacija po U</h5>
+        <div class="stupac">
+            <h5>1. ${uDerivacije[0]}</h5>
+            <h5>2. ${uDerivacije[1]}</h5>
+            <h5>3. ${uDerivacije[2]}</h5>
+        </div>
+    </div>
+    <div class="stupac">
+        <h5>Derivacija po V</h5>
+        <div class="stupac">
+            <h5>1. ${vDerivacije[0]}</h5>
+            <h5>2. ${vDerivacije[1]}</h5>
+            <h5>3. ${vDerivacije[0]}</h5>
+        </div>
+    </div>
+</div>
+
+<div class="poravnaj margina-mala">
+    <h5>(${vDerivacije[0]}, ${vDerivacije[1]}, ${vDerivacije[2]})</h5>
+    <h5>X</h5>
+    <h5>(${uDerivacije[0]} ,${uDerivacije[1]}, ${uDerivacije[2]})</h5>
+</div>
+<div class="margina-mala">
+    <p>*izbaci nepoznanice iz deriviranog i izračunaj vektorski produkt</p>
+</div>
+
+<form hx-post="/vektorskiProdukt" hx-target="#VektorskiProduktRijesenje">
+    <div id="nize">
+        <div class="cijeli-vektor">
+            <h5>Vektor <h5 contenteditable="true">B</h5> = </h5>
+            <div><h1>(</h1></div>
+            <div><input type="number" name="Vektor1"></div>
+            <div><h1>,</h1></div>
+            <div><input type="number" name="Vektor1"></div>
+            <div><h1>,</h1></div>
+            <div><input type="number" name="Vektor1"></div>
+            <div><h1>)</h1></div>
+        </div>
+        <div class="cijeli-vektor">
+            <h5>Vektor <h5 contenteditable="true">C</h5> = </h5>
+            <div><h1>(</h1></div>
+            <div><input type="number" name="Vektor2"></div>
+            <div><h1>,</h1></div>
+            <div><input type="number" name="Vektor2"></div>
+            <div><h1>,</h1></div>
+            <div><input type="number" name="Vektor2"></div>
+            <div><h1>)</h1></div>
+        </div>
+        <div class="centriraj"><button type="submit">Izračunaj</button></div>
+    </div>
+</form>
+<div id="VektorskiProduktRijesenje"></div>
