@@ -9,6 +9,17 @@ const { type } = require('os');
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
 app.use(express.static(path.join(__dirname, 'html')))
 
+function pretvoriPIuBroj(str) {
+    const piSymbol = 'π';
+    const piValue = Math.PI;
+  
+    // Zamijeni sve pojave simbola π u stringu s vrijednošću broja Math.PI
+    const noviString = str.replace(new RegExp(piSymbol, 'g'), piValue);
+    console.log("Novi string je " + noviString)
+    // Vrati novi string koji sadrži brojevnu vrijednost za simbol PI
+    return noviString;
+}
+
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/html/index.html')
 })
@@ -392,9 +403,66 @@ app.post('/IspitCetvrtiZadatakRijesenje',urlencodedParser ,(req, res)=>{
 })
 
 app.get('/gradijentFunkcije', (req, res)=>{
-    
+    res.sendFile(__dirname + '/html/templates/Ispit/peti-zadatak/zadatak.html')
 })
 
+app.post('/gradijentRijesenje',urlencodedParser , (req, res)=>{
+    const jednadba = req.body.jednadba
+    const tocka = req.body.tocka
+    let xDerivacija = undefined
+    let yDerivacija = undefined
+    let TockaRijesenje1 = undefined
+    let TockaRijesenje2 = undefined
+    try{
+        xDerivacija = math.derivative(jednadba, 'x').toString()
+        yDerivacija = math.derivative(jednadba, 'y').toString()
+        const tockaPretvoreno = [pretvoriPIuBroj(tocka[0]), pretvoriPIuBroj(tocka[1])]
+        TockaRijesenje1 = math.evaluate(xDerivacija, {'x' : tockaPretvoreno[0]})
+        TockaRijesenje2 = math.evaluate(yDerivacija, {'y' : tockaPretvoreno[1]})
+        console.log(tockaPretvoreno)
+        console.log(TockaRijesenje1)
+    } catch(e){
+        console.log("Error je izaso")
+        console.log(e)
+    }
+    
+    //console.log(xDerivacija.toString())
+    //console.log(yDerivacija.toString())
+    
+    //console.log(TockaRijesenje1)
+    //console.log(TockaRijesenje2)
+    res.send(`
+    <div class="poravnaj">
+    <div class="stupac margina-mala">
+        <h5>Derivacija po X</h5>
+        <h5>${xDerivacija}</h5>
+    </div>
+    <div class="stupac margina-mala">
+        <h5>Derivacija po Y</h5>
+        <h5>${yDerivacija}</h5>
+    </div>
+    </div>
+    <div class="stupac">
+        <p>Uneses x i y od točke u deriviranu jednadbu</p>
+        <p>*π(pi) se piše da uključiš CAPSLOCK, držiš ALT i upišeš 227 sa keypadom(brojevi desno, ne ovi u redu)</p>
+    </div>
+    <div class="stupac">
+    <h5>Prva točka je = ${TockaRijesenje1}</h5>
+    <h5>Druga točka je = ${TockaRijesenje2}</h5>
+    </div>
+    <form hx-post="/GradijentPomocno" class="poravnaj" hx-target="#pomocno">
+    <h5>u = </h5>
+    <input type="number" name="vektor" id="">
+    <h5>i   </h5>
+    <input type="number" name="vektor" id="">
+    <h5>j</h5>
+    </form>
+    `)
+})
+
+app.post('/GradijentPomocno',urlencodedParser ,(req, res)=>{
+
+})
 
 app.listen(5000, ()=>{
     console.log("Server radi")

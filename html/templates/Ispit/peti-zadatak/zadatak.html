@@ -1,16 +1,22 @@
-<div class="poravnaj">
-    <div class="poravnaj">
-        <h5>f(x,y) = </h5>
-        <input type="text" name="jednadba" id="">
+
+
+<form hx-post="/gradijentRijesenje">
+    <div class="stupac">
+        <div class="poravnaj">
+            <h5>f(x,y) = </h5>
+            <input type="text" name="jednadba" id="">
+        </div>
+        <div class="poravnaj">
+            <h5>T0 = </h5>
+            <h5>(</h5>
+            <input type="text" name="tocka" id="">
+            <h5>,</h5>
+            <input type="text" name="tocka" id="">
+            <h5>)</h5>
+        </div>
     </div>
-    <div class="poravnaj">
-        <h5>T0 = </h5>
-        <h5>(</h5>
-        <input type="number" name="tocka" id="">
-        <h5>,</h5>
-        <input type="number" name="tocka" id="">
-        <h5>,</h5>
-        <input type="number" name="tocka" id="">
-        <h5>)</h5>
+    <div style="display: flex; justify-content: center; align-self: center;">
+        <button type="submit" class="centriraj">Podnesi zadatak</button>
     </div>
-</div>
+    
+</form>
