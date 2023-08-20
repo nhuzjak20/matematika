@@ -1,23 +1,18 @@
-
-
-<form hx-post="/gradijentRijesenje">
-    <div class="stupac">
-        <div class="poravnaj">
-            <h5>f(x,y) = </h5>
-            <input type="text" name="jednadba" id="">
-        </div>
-        <div class="poravnaj">
-            <h5>T0 = </h5>
-            <h5>(</h5>
-            <input type="text" name="tocka" id="">
-            <h5>,</h5>
-            <input type="text" name="tocka" id="">
-            <h5>)</h5>
-        </div>
+<form hx-post="/polinomi" class="stupac">
+    <div class="centriraj poravnaj">
+        <h5>Polinom p(x)</h5>
+        <input type="text" name="polinom" id="">
     </div>
-    <div style="display: flex; justify-content: center; align-self: center;">
-        <button type="submit" class="centriraj">Podnesi zadatak</button>
-    </div> 
+    <div class="centriraj stupac">
+        <h5>Polinom p pri dijeljenju sa</h5>
+        <div class="poravnaj">
+            <h5>q(x)=</h5>
+            <input type="text" name="polinomQ" id="">
+        </div>
+        <h5>daje</h5>
+        <input type="number" name="rezultat" id="">
+    </div>
+    <button type="submit">Podnesi zadatak</button>
 </form>
 <div class="accordion accordion-flush" id="accordionFlushExample">
     <div class="accordion-item">

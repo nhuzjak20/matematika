@@ -70,3 +70,111 @@
     </div>
 </form>
 <div id="rijesenje"></div>
+<div class="accordion accordion-flush margina-mala" id="accordionFlushExample" style="border-style: solid;">
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+          Postupak
+        </button>
+      </h2>
+      <div style="overflow-y: scroll;" id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+        <div style="height: 20%;">
+            <ol>
+                <li>
+                    <p>Izvuci vektore smjera iz nazivnika i zapiši ih(iz jedne i druge jednadbe). Koristi oblik S1 = (X,Y,Z). U ovome slučaju:</p>
+                    
+                    <div>
+                        <img src="/images/paralelniPravci/jednadba1.PNG" alt="">
+                    </div>
+                    <h6>S1 = (-1,3,-1)</h6>
+                    <p>i S2 isto zapiši, to su ti vektori smjera</p>
+                    <u>Napravi vektorsko množenje sa ta dva vektora smjera, trebat ce ti za kasnije</u>
+                </li>
+                <li>
+                    <p>Izvuci Točke iz jednađbe i zapiši ih u u obliku T1 = (X,Y,Z) i T2 = (X,Y,Z). Kada ispisuješ pripazi na predznake jer  u orginalnoj jednađbi su minusi pa ako je broj negativan, koordinata je pozitivna, a ako je broj pozitivan, koordinata je negativna</p>
+                    <div>
+                        <img src="/images/paralelniPravci/jednadba2.PNG" alt="">
+                    </div>
+                    <h6>T2 = (1, 11, -14)</h6>
+                    <u>Uoči da su predznaci promjenjeni!!!</u>
+                </li>
+                <li>
+                    <p>Idući korak je da zapišeš točke i vektore smjera u parametarskom obliku(za obe jednadbe, ovdje je jedna kao primjer ali za obje dobivene u zadatku):</p>
+                    <div>
+                        <p>X = S1(X) + T1(X)</p>
+                        <p>Y = S1(Y) + T1(Y)</p>
+                        <p>Z = S1(Z) + T1(Z)</p>
+                    </div>
+                    <p>Primjer bi bio:</p>
+                    <div>
+                        <p>X = -1u + 1</p>
+                        <p>Y = 2u + 11</p>
+                        <p>Z = -1u - 14</p>
+                    </div>
+                    <p>Tako za jednu i drugu jednadbu. <u>BTW PROMJENI SLOVO</u>. Za prvu jednadbu ili u ili v ili sta god, za drugu neko drugo slovo</p>
+                </li>
+                <li>
+                    <p>Napiši sada dvije točke koje te traži, a to su N1 i N2 i one imaju svoje koordinate(N1=(X,Y,Z)), ti koordinati su parametarske jednadbe onih dviju pravaca.</p>
+                    <div>
+                        <p>Unesi ih u obliku</p>
+                        <p>N1 = (S1(X) + T1(X), S1(Y) + T1(Y), S1(Z) + T1(Z))</p>
+                        <p>N2 = (S2(X) + T2(X), S2(Y) + T2(Y), S2(Z) + T2(Z))</p>
+                    </div>
+                    <div>
+                        <p>Primjer ovoga bi bio:</p>
+                        <h6>N1 = (-1p + 5, 3p - 4, -1p - 6)</h6>
+                        <h6>N2 = (-1u + 1, 2u + 11, -1u - 14)</h6>
+                    </div>
+                </li>
+                <li>
+                    <p>Kada si zapišeš nove točke u gore obliku, moraš napravit vektor od njih tako da oduzmeš jednu od druge</p>
+                    <div>
+                        <h6>N1N2 = N2 - N1</h6>
+                    </div>
+                    <div>
+                        <p>U ovome primjeru bi to išlo ovako:</p>
+                        <h6>N1N2 = (-1u +1 - (-1p +5), 2u + 11 - (3p -4), -1u -14 - (-1p -6))</h6>
+                        <u>PRIPAZI: Ako je N1N2 to znači N2 - N1(znam, apsolutno retardirano)</u>
+                    </div>
+                    <div>
+                        <p>Dobio bi:</p>
+                        N1N2 = (-1u +1p -4, 2u -3p + 15, -1u + 1p - 8)
+                    </div>
+                </li>
+                <li>
+                    <p>Idući korak ti je da od tog N1N2 vektora, koordinate koje su ustvari jednadbe sa dvije nepoznanice izjednacis sa onim vektorom smjera iz koraka 1. gdje ti je podcrtano. S desne strane jednakosti ti ide taj dobiveni vektor no stavljas lambda kao nepoznanicu koja ti mnozi svaki broj.</p>
+                    <div>
+                        <p>N1N2(X) = λS1S2(X)</p>
+                        <p>N1N2(Y) = λS1S2(Y)</p>
+                        <p>N1N2(Z) = λS1S2(Z)</p>
+                    </div>
+                    <u>S1S2 je vektorski umnožak vektora smjera!!</u>
+                    <p>Primjer ovoga zadatka gore bi bio:</p>
+                    <div>
+                        <p>-1u +1p -4 = -1λ</p>
+                        <p>2u -3p + 15 = 0λ</p>
+                        <p>-1u + 1p - 8 = 1λ</p>
+                    </div>
+                    <p>PREPORUČENO:</p>
+                    <p>Prebaci si da ti brojevi budu s desne strane a nepoznanice a lijeve:</p>
+                    <div>
+                        <p>-1u + 1p + 1λ = 4</p>
+                        <p>2u -3p + 0λ = -15</p>
+                        <p>-1u + 1p - 1λ= 8</p>
+                    </div>
+                </li>
+                <li>
+                    <p>Sustav od tri jednadžbe koji si dobio gore i prebacio kao što sam ti reko, uneseš u Gauss-Jordan Kalkulator i umjesto u i p tebi će pisat x i y ali to nije bitno, to ti je ustvari u i p.</p>
+                    <a href="https://matrix.reshish.com/gauss-jordanElimination.php" target="_blank" rel="noopener noreferrer">Gauss-Jordan Kalkulator(link)</a>
+                    <p>U ovome slučaju bi unesao ovo(Jednadba je gore):</p>
+                    <img src="/images/paralelniPravci/jednadba3.PNG" alt="">
+                    <p>Primjer Riješenja:</p>
+                    <img src="/images/paralelniPravci/jednadba4.PNG" alt="">
+                    <p>I dobio bi riješenja u X1, X2, X3 obliku. X1 ti je u, X2 ti je p, a X3 ti je λ. <u>Lambda ti je nebitan.</u>
+                    Kada imaš u i p, uneseš gore u N1 i N2 i dobiješ koordinate točke</p>
+                </li>
+            </ol>
+        </div>
+      </div>
+    </div>
+  </div>

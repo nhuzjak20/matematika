@@ -8,6 +8,7 @@ const math = require('mathjs');
 const { type } = require('os');
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
 app.use(express.static(path.join(__dirname, 'html')))
+app.use('/images',express.static(path.join(__dirname, '/images')))
 
 function pretvoriPIuBroj(str) {
     const piSymbol = 'π';
@@ -21,6 +22,7 @@ function pretvoriPIuBroj(str) {
 }
 
 app.get('/', (req, res) => {
+    
     res.sendFile(__dirname + '/html/index.html')
 })
 
@@ -206,6 +208,7 @@ app.post('/IspitDrugiRijesenje', urlencodedParser, (req, res) => {
     <h5>${Npravac1Tocka[0]}t ${Npravac2Tocka[0]}u ${CijelaBrojka[0]} = ${v1xv2.x}& </h5>
     <h5>${Npravac1Tocka[1]}t ${Npravac2Tocka[1]}u ${CijelaBrojka[1]} = ${v1xv2.y}& </h5>
     <h5>${Npravac1Tocka[2]}t ${Npravac2Tocka[2]}u ${CijelaBrojka[2]} = ${v1xv2.z}& </h5>
+    <p>Upitno koliko je ovo točno, izračunajte si to na papiru</p>
 </div>
 </div>`
     res.send(posalji)
@@ -233,7 +236,15 @@ app.post('/vektorskiProdukt',urlencodedParser , (req, res) => {
     res.send(vrati)
 })
 
+app.get('/Kruznica', (req, res) =>{
+    res.sendFile(__dirname + '/html/templates/Ispit/sesti-zadatak/zadatak.html')
+})
 
+app.post('/kruznicaRijesenje',urlencodedParser ,(req, res)=>{
+    const jednadba = req.body.jednadba
+    const reza = req.body.jednakost
+
+})
 
 app.get('/IspitTreciZadatak', (req, res)=>{
     const xDerivacija = math.derivative('x^2 - y^2 -14x + 10y', 'x').toString()
@@ -301,7 +312,7 @@ app.post('/IspitCetvrtiZadatakRijesenje',urlencodedParser ,(req, res)=>{
     try {
         
         //console.log(JednadbeZaRijesit)
-        console.log(nerdamer.solveEquations(JednadbeZaRijesit).toString())
+        //console.log(nerdamer.solveEquations(JednadbeZaRijesit).toString())
         /*
         res.send (`
         <div class="centriraj stupac">
@@ -338,6 +349,7 @@ app.post('/IspitCetvrtiZadatakRijesenje',urlencodedParser ,(req, res)=>{
     }
     
     console.log(uDerivacije.toString())
+    console.log(JednadbeZaRijesit)
     res.send(`
     <div class="centriraj stupac">
     <div class="stupac">
@@ -461,7 +473,17 @@ app.post('/gradijentRijesenje',urlencodedParser , (req, res)=>{
 })
 
 app.post('/GradijentPomocno',urlencodedParser ,(req, res)=>{
+    
+})
 
+app.get('/polinom', (req, res)=>{
+    res.sendFile(__dirname + '/html/templates/Ispit/sedmi-zadatak/zadatak.html')
+})
+
+app.post('/polinomi',urlencodedParser ,(req, res)=>{
+    const polinom1 = req.body.polinom
+    const polinom2 = req.body.polinomQ
+    const rezultat = req.body.rezultat
 })
 
 app.listen(5000, ()=>{

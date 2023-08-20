@@ -1,22 +1,14 @@
-
-
-<form hx-post="/gradijentRijesenje">
-    <div class="stupac">
-        <div class="poravnaj">
-            <h5>f(x,y) = </h5>
+<form hx-post="/kruznicaRijesnje">
+    <div class="centriraj">
+        <div class="centriraj">
+            <h5>Jednadba kruznice(x,y) jednaka je</h5>
             <input type="text" name="jednadba" id="">
         </div>
-        <div class="poravnaj">
-            <h5>T0 = </h5>
-            <h5>(</h5>
-            <input type="text" name="tocka" id="">
-            <h5>,</h5>
-            <input type="text" name="tocka" id="">
-            <h5>)</h5>
+        <div>
+            <h5>Cemu je jednaka kruznica: </h5>
+            <input type="text" name="jednakost" id="">
         </div>
-    </div>
-    <div style="display: flex; justify-content: center; align-self: center;">
-        <button type="submit" class="centriraj">Podnesi zadatak</button>
+        <button type="submit">Podnesi zadatak</button>
     </div> 
 </form>
 <div class="accordion accordion-flush" id="accordionFlushExample">
