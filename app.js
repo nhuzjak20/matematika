@@ -472,6 +472,13 @@ app.post('/gradijentRijesenje',urlencodedParser , (req, res)=>{
     `)
 })
 
+app.post('/rijesiKruznicu',urlencodedParser ,(req, res)=>{
+    const jednadba = req.body.jednadba
+    const jednakost = req.body.jednakost 
+
+    res.send("Dobar dan")
+})
+
 app.post('/GradijentPomocno',urlencodedParser ,(req, res)=>{
     
 })
