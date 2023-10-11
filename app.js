@@ -1,4 +1,5 @@
 const express = require('express');
+const operacije = require('./js/extra')
 const path = require('path');
 const v = require('vec3')
 const app = express();
@@ -235,7 +236,6 @@ app.post('/vektorskiProdukt',urlencodedParser , (req, res) => {
     </div>`
     res.send(vrati)
 })
-
 app.get('/Kruznica', (req, res) =>{
     res.sendFile(__dirname + '/html/templates/Ispit/sesti-zadatak/zadatak.html')
 })
@@ -491,6 +491,17 @@ app.post('/polinomi',urlencodedParser ,(req, res)=>{
     const polinom1 = req.body.polinom
     const polinom2 = req.body.polinomQ
     const rezultat = req.body.rezultat
+
+app.get('/prvi-kolokvij-navigacija', (req, res) => {
+    res.sendFile(__dirname + '/html/templates/prvi-kolokvij/navigacija.html')
+})
+
+app.get('/kolokvij1CetvrtiZadatak', (req, res) => {
+    res.sendFile(__dirname + '/html/templates/prvi-kolokvij/PravacTockaVektor/zadatak.html')
+})
+
+app.post('/rijesiZad4', urlencodedParser, (req, res) => {
+
 })
 
 app.listen(5000, ()=>{
