@@ -1,4 +1,5 @@
 const express = require('express');
+const operacije = require('./js/extra')
 const path = require('path');
 const v = require('vec3')
 const app = express();
@@ -128,6 +129,18 @@ app.post('/vektorskiProdukt',urlencodedParser , (req, res) => {
         <h5>(${rezultat.x}, ${rezultat.y}, ${rezultat.z})</h5>
     </div>`
     res.send(vrati)
+})
+
+app.get('/prvi-kolokvij-navigacija', (req, res) => {
+    res.sendFile(__dirname + '/html/templates/prvi-kolokvij/navigacija.html')
+})
+
+app.get('/kolokvij1CetvrtiZadatak', (req, res) => {
+    res.sendFile(__dirname + '/html/templates/prvi-kolokvij/PravacTockaVektor/zadatak.html')
+})
+
+app.post('/rijesiZad4', urlencodedParser, (req, res) => {
+    
 })
 
 app.listen(5000, ()=>{
