@@ -1,5 +1,6 @@
 const express = require('express');
-const operacije = require('./js/extra')
+const operacijeKlasa = require('./js/extra')
+const operacije = new operacijeKlasa
 const path = require('path');
 const v = require('vec3')
 const app = express();
@@ -7,6 +8,7 @@ const bodyParser = require('body-parser')
 const nerdamer = require('nerdamer/all')
 const math = require('mathjs');
 const { type } = require('os');
+const { url } = require('inspector');
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
 app.use(express.static(path.join(__dirname, 'html')))
 app.use('/images',express.static(path.join(__dirname, '/images')))
@@ -491,6 +493,7 @@ app.post('/polinomi',urlencodedParser ,(req, res)=>{
     const polinom1 = req.body.polinom
     const polinom2 = req.body.polinomQ
     const rezultat = req.body.rezultat
+})
 
 app.get('/prvi-kolokvij-navigacija', (req, res) => {
     res.sendFile(__dirname + '/html/templates/prvi-kolokvij/navigacija.html')
@@ -500,103 +503,22 @@ app.get('/kolokvij1CetvrtiZadatak', (req, res) => {
     res.sendFile(__dirname + '/html/templates/prvi-kolokvij/PravacTockaVektor/zadatak.html')
 })
 
-app.post('/rijesiZad4', urlencodedParser, (req, res) => {
+app.get('/kolokvij1DrugiZadatak', (req, res)=>{
+    res.sendFile(__dirname + '/html/templates/prvi-kolokvij/Ravnina/zadatak.html')
+})
 
+app.post('/rijesiZad4', urlencodedParser, (req, res) => {
+    const Vsmjer1 = operacije.izvuciKoeficijenteIzJednadzbi(req.body.jednadbe)
+    console.log(Vsmjer1)
+})
+
+app.post('/kol1Rijesi4', urlencodedParser, (req, res) => {
+    const ravnina = req.body.ravnina
+    console.log(ravnina)
+    //console.log(operacije3.x)
+    res.send(operacije.VolumenTetraedraOsi(ravnina[0], ravnina[1], ravnina[2], ravnina[3]))
 })
 
 app.listen(5000, ()=>{
     console.log("Server radi")
 })
-
-/* 
-
- try{
-        nerdamer.set('SOLUTIONS_AS_OBJECT', true);
-        const jednadbe = req.body.Jednadbe
-        const tocka = req.body.tocka
-        var JednadbeZaRijesit = [jednadbe[0] + ' = ' + tocka[0], jednadbe[1] + ' = ' + tocka[1], jednadbe[2] + ' = ' + tocka[2]]
-        console.log(JednadbeZaRijesit)
-        console.log(nerdamer.solveEquations(JednadbeZaRijesit))
-        console.log(nerdamer.solveEquations(JednadbeZaRijesit).toString())
-        const uDerivacije = [math.derivative(JednadbeZaRijesit[0], 'u'), math.derivative(JednadbeZaRijesit[1], 'u'), math.derivative(JednadbeZaRijesit[2], 'u')]
-        const vDerivacije = [math.derivative(JednadbeZaRijesit[0], 'v'), math.derivative(JednadbeZaRijesit[1], 'v'), math.derivative(JednadbeZaRijesit[2], 'v')]
-        
-        res.send( `
-    <div class="centriraj stupac">
-        <div class="stupac">
-            <h5>${JednadbeZaRijesit[0]}</h5>
-            <h5>${JednadbeZaRijesit[1]}</h5>
-            <h5>${JednadbeZaRijesit[2]}</h5>
-        </div>
-    </div>
-    <h5>Parcijalno deriviraj svaku jednadbu</h5>
-    <div class="poravnaj">
-    <div class="stupac">
-        <h5>Derivacija po U</h5>
-        <div class="stupac">
-            <h5>1. ${uDerivacije[0]}</h5>
-            <h5>2. ${uDerivacije[1]}</h5>
-            <h5>3. ${uDerivacije[2]}</h5>
-        </div>
-    </div>
-    <div class="stupac">
-        <h5>Derivacija po V</h5>
-        <div class="stupac">
-            <h5>1. ${vDerivacije[0]}</h5>
-            <h5>2. ${vDerivacije[1]}</h5>
-            <h5>3. ${vDerivacije[0]}</h5>
-        </div>
-    </div>
-    </div>
-    `)
-    } catch(error){
-        nerdamer.set('SOLUTIONS_AS_OBJECT', true);
-        const jednadbe = req.body.Jednadbe
-        const tocka = req.body.tocka
-        var JednadbeZaRijesit = [jednadbe[0] + ' = ' + tocka[0], jednadbe[1] + ' = ' + tocka[1], jednadbe[2] + ' = ' + tocka[2]]
-        console.log(error)
-        console.log("Neradi")
-        try{
-            
-            console.log(nerdamer.diff())
-        } catch(error){
-            console.log("Greška je kod operacija")
-        }
-        //const uDerivacije = [math.derivative(JednadbeZaRijesit[0], 'u'), math.derivative(JednadbeZaRijesit[1], 'u'), math.derivative(JednadbeZaRijesit[2], 'u')]
-        //const vDerivacije = [math.derivative(JednadbeZaRijesit[0], 'v'), math.derivative(JednadbeZaRijesit[1], 'v'), math.derivative(JednadbeZaRijesit[2], 'v')]
-        //console.log(uDerivacije)
-        //console.log(vDerivacije)
-        uDerivacije = 1
-        vDerivacije = 2
-        res.send( `
-    <div class="centriraj stupac">
-        <div class="stupac">
-            <h5>${JednadbeZaRijesit[0]}</h5>
-            <h5>${JednadbeZaRijesit[1]}</h5>
-            <h5>${JednadbeZaRijesit[2]}</h5>
-            <p>*Kod je izbacio error, ovdje su ti izbačene jednadbe, to ti je sustav jednadbi pa rijesis i dobis U i V</p>
-        </div>
-    </div>
-    <h5>Parcijalno deriviraj svaku jednadbu</h5>
-    <div class="poravnaj">
-    <div class="stupac">
-        <h5>Derivacija po U</h5>
-        <div class="stupac">
-            <h5>1. ${uDerivacije[0]}</h5>
-            <h5>2. ${uDerivacije[1]}</h5>
-            <h5>3. ${uDerivacije[2]}</h5>
-        </div>
-    </div>
-    <div class="stupac">
-        <h5>Derivacija po V</h5>
-        <div class="stupac">
-            <h5>1. ${vDerivacije[0]}</h5>
-            <h5>2. ${vDerivacije[1]}</h5>
-            <h5>3. ${vDerivacije[0]}</h5>
-        </div>
-    </div>
-    </div>
-    `)
-    }
-
-*/
