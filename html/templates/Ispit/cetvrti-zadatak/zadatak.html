@@ -1,0 +1,47 @@
+
+<form hx-post="/IspitCetvrtiZadatakRijesenje" hx-swap="afterend">
+    <div>
+        <div class="poravnaj">
+            <h5>r(u,v) =</h5>
+            <div class="poravnaj">
+                <h5>(</h5>
+                <input type="text" name="Jednadbe" id="">
+                <h5>,</h5>
+                <input type="text" name="Jednadbe" id="">
+                <h5>,</h5>
+                <input type="text" name="Jednadbe" id="">
+                <h5>)</h5>
+            </div>
+        </div>
+        <div class="poravnaj">
+            <h5>T = </h5>
+            <div class="poravnaj">
+                <h5>(</h5>
+                <input type="number" name="tocka" id="">
+                <h5>,</h5>
+                <input type="number" name="tocka">
+                <h5>,</h5>
+                <input type="number" name="tocka" id="">
+                <h5>)</h5>
+            </div>
+        </div>
+    </div>
+    <div class="centriraj">
+        <button type="submit" class="centriraj">Posalji zadatak</button>
+    </div>    
+</form>
+<div id="rijesenje">
+
+</div>
+<div class="accordion accordion-flush" id="accordionFlushExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+          Postupak
+        </button>
+      </h2>
+      <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
+      </div>
+    </div>
+  </div>

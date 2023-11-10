@@ -12,6 +12,10 @@ h5,h6 {
     font-size: larger;
 }
 
+.bottom-border{
+    border-bottom: 1px solid black;
+}
+
 .poravnaj-around{
     display: flex;
     justify-content: space-evenly;
@@ -23,12 +27,35 @@ h5,h6 {
     justify-content: center;
 }
 
+.margina-srednja{
+    margin: 5%;
+}
+
 h5[contenteditable="true"]{
     margin: 2%;
 }
 
 .poravnaj{
     display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.margina-mala{
+    margin: 2%;
+}
+
+.padding-mali{
+    padding: 4%;
+}
+
+.width-max{
+    width: max-content;
+}
+
+.stupac{
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
@@ -56,6 +83,7 @@ h5[contenteditable="true"]{
 .centriraj{
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
 }
 
 .cijeli-vektor div{

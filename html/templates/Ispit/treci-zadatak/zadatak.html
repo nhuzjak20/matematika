@@ -1,0 +1,64 @@
+
+<form action="" hx-post="/IspitTreciRijesenje" hx-target="#rijesenje">
+    <div class="stupac">
+        <div class="poravnaj">
+            <h5>f(x,y) = </h5>
+            <input type="text" name="jednadba" id="">
+        </div>
+        <div class="stupac">
+            <div class="poravnaj">
+                <h5>A(</h5>
+                <input type="number" name="PrvaTocka" id="">
+                <h5>,</h5>
+                <input type="number" name="PrvaTocka" id="">
+                <h5>)</h5>
+            </div>
+            <div class="poravnaj">
+                <h5>B(</h5>
+                <input type="number" name="DrugaTocka" id="">
+                <h5>,</h5>
+                <input type="number" name="DrugaTocka" id="">
+                <h5>)</h5>
+            </div>
+        </div>
+        <div class="centriraj">
+            <button type="submit">Izračunaj</button>
+        </div>
+    </div> 
+</form>
+<div id="rijesenje">
+
+</div>
+<div class="accordion accordion-flush margina-mala" id="accordionFlushExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+          Postupak
+        </button>
+      </h2>
+      <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">
+            <ol>
+                <li>
+                    <p>Prvi korak je da jednađbu koju si dobio deriviras po X i po y.</p>
+                    <img src="/images/globMinMax/slika1.PNG" alt="">
+                    <p>U ovome slučaju derivacije su:</p>
+                    <div>
+                        <p>Po X -> 2x - 14</p>
+                        <p>Po Y -> -2y + 16</p>
+                    </div>
+                </li>
+                <li>
+                    <p>Nakon što si derivirao i dobio rezultat, izjednačiš svaku jednažbu šta si dobio sa 0 i riješiš da dobiješ X i Y</p>
+                    <p>Primjer u ovome zadatku bi bio da: </p>
+                    <p>2x - 14 = 0 -> <u>X = 7</u></p>
+                    <p>-2y +16 = 0 -> <u>Y = 8</u></p>
+                </li>
+                <li>
+                    <p>Nakon toga u jednadžbu koju si dobio za zadatak, uneseš X i Y koje si dobio. Nakon toga uneseš ove dvije točke koje si dobio u jednadžbu. Najveći rezultat ti je maksimum, najmanji je minimum.</p>
+                </li>
+            </ol>
+        </div>
+      </div>
+    </div>
+  </div>

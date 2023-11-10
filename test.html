@@ -1,0 +1,271 @@
+<script>
+    console.log("-2" + 1)
+</script>
+
+<div class="poravnaj">
+    <div>
+        <h6>Vektori smjera:</h6>
+        <h5 class="margina-mala">S1(${vSmjer1[0]},${vSmjer1[1]}, ${vSmjer1[2]})</h5>
+        <h5 class="margina-mala">S2(${vSmjer2[0]},${vSmjer2[1]}, ${vSmjer2[2]})</h5>
+    </div>
+    <div>
+        <h6>Točke:</h6>
+        <h5 class="margina-mala">T1(${OrgTocka1[0]}, ${OrgTocka1[1]}, ${OrgTocka1[2]})</h5>
+        <h5 class="margina-mala">T1(${OrgTocka2[0]}, ${OrgTocka2[1]}, ${OrgTocka2[2]})</h5>
+    </div>
+</div>
+<div class="poravnaj">
+    <h5>S1</h5><h5>X</h5><h5>S2</h5><h5>=</h5><h5>(${v1xv2.x}, ${v1xv2.y}, ${v1xv2.y})</h5>
+</div>
+<div>
+    <div class="poravnaj">
+        <div>
+            <h5>P1...</h5>
+        </div>
+        <div class="stupac">
+            <div>
+                <h6>X = ${vSmjer1[0]} ${VTocka1[0]}</h6>
+            </div>
+            <div>
+                <h6>Y = ${vSmjer1[1]} ${VTocka1[1]}</h6>
+            </div>
+            <div>
+                <h6>Z = ${vSmjer1[2]} ${VTocka1[2]}</h6>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div>
+            <h5>P2...</h5>
+        </div>
+        <div class="stupac">
+            <div>
+                v@almAr135
+                <h6>X = ${vSmjer2[0]} ${VTocka2[0]}</h6>
+            </div>
+            <div>
+                <h6>Y = ${vSmjer2[1]} ${VTocka2[1]}</h6>
+            </div>
+            <div>
+                <h6>Z = ${vSmjer2[2]} ${VTocka2[2]}</h6>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="stupac">
+    <div><h5>N1 = (${vSmjer1[0]}t ${StringPravac1[0]}, ${vSmjer1[1]}t ${StringPravac1[1]}, ${vSmjer1[2]} ${StringPravac1[2]} )</h5></div>
+    <div><h5>N1 = (${vSmjer2[0]} ${StringPravac2[0]}, ${vSmjer2[1]} ${StringPravac2[1]}, ${vSmjer2[2]} ${StringPravac2[2]} )</h5></div>
+</div>
+
+<div>
+    <h5>N1N2 = ((${vSmjer1[0]}t ${VTocka1[0]}) - (${vSmjer2[0]}t ${VTocka2[0]}),(${vSmjer1[1]}t ${VTocka1[1]}) - (${vSmjer2[1]}t ${VTocka2[1]}), (${vSmjer1[2]}t ${VTocka1[2]}) - (${vSmjer2[2]}t ${VTocka2[2]}))</h5>
+</div>
+
+<div>
+    <h5>${Npravac1Tocka[0]}t ${Npravac2Tocka[0]} ${CijelaBrojka[0]} = ${v1xv2[0]}& </h5>
+    <h5>${Npravac1Tocka[1]}t ${Npravac2Tocka[1]} ${CijelaBrojka[1]} = ${v1xv2[1]}& </h5>
+    <h5>${Npravac1Tocka[2]}t ${Npravac2Tocka[2]} ${CijelaBrojka[2]} = ${v1xv2[2]}& </h5>
+</div>
+
+
+<div class="poravnaj">
+    <div>
+        <div class="stupac">
+            <h5>${xDerivacija} = 0</h5>
+            <h5>x = ${xRijesenje}</h5>
+        </div>
+        <div class="stupac">
+            <h5>${yDerivacija} = 0</h5>
+            <h5>y = ${yRijesenje}</h5>
+        </div>
+    </div>
+</div>
+
+<div class="centriraj stupac">
+    <div class="stupac">
+        <h5>${JednadbeZaRijesit[0]}</h5>
+        <h5>${JednadbeZaRijesit[1]}</h5>
+        <h5>${JednadbeZaRijesit[2]}</h5>
+        <p>*Kod je izbacio error, ovdje su ti izbačene jednadbe, to ti je sustav jednadbi pa rijesis i dobis U i V</p>
+    </div>
+</div>
+
+<h5>Parcijalno deriviraj svaku jednadbu</h5>
+
+<div class="poravnaj">
+    <div class="stupac">
+        <h5>Derivacija po U</h5>
+        <div class="stupac">
+            <h5>1. ${uDerivacije[0]}</h5>
+            <h5>2. ${uDerivacije[1]}</h5>
+            <h5>3. ${uDerivacije[2]}</h5>
+        </div>
+    </div>
+    <div class="stupac">
+        <h5>Derivacija po V</h5>
+        <div class="stupac">
+            <h5>1. ${vDerivacije[0]}</h5>
+            <h5>2. ${vDerivacije[1]}</h5>
+            <h5>3. ${vDerivacije[0]}</h5>
+        </div>
+    </div>
+</div>
+
+<div class="poravnaj margina-mala">
+    <h5>(${vDerivacije[0]}, ${vDerivacije[1]}, ${vDerivacije[2]})</h5>
+    <h5>X</h5>
+    <h5>(${uDerivacije[0]} ,${uDerivacije[1]}, ${uDerivacije[2]})</h5>
+</div>
+<div class="margina-mala">
+    <p>*izbaci nepoznanice iz deriviranog i izračunaj vektorski produkt</p>
+</div>
+
+<form hx-post="/vektorskiProdukt" hx-target="#VektorskiProduktRijesenje">
+    <div id="nize">
+        <div class="cijeli-vektor">
+            <h5>Vektor <h5 contenteditable="true">B</h5> = </h5>
+            <div><h1>(</h1></div>
+            <div><input type="number" name="Vektor1"></div>
+            <div><h1>,</h1></div>
+            <div><input type="number" name="Vektor1"></div>
+            <div><h1>,</h1></div>
+            <div><input type="number" name="Vektor1"></div>
+            <div><h1>)</h1></div>
+        </div>
+        <div class="cijeli-vektor">
+            <h5>Vektor <h5 contenteditable="true">C</h5> = </h5>
+            <div><h1>(</h1></div>
+            <div><input type="number" name="Vektor2"></div>
+            <div><h1>,</h1></div>
+            <div><input type="number" name="Vektor2"></div>
+            <div><h1>,</h1></div>
+            <div><input type="number" name="Vektor2"></div>
+            <div><h1>)</h1></div>
+        </div>
+        <div class="centriraj"><button type="submit">Izračunaj</button></div>
+    </div>
+</form>
+<div id="VektorskiProduktRijesenje"></div>
+
+<div class="poravnaj">
+    <div class="stupac margina-mala">
+        <h5>Derivacija po X</h5>
+        <h5>${xDerivacija}</h5>
+    </div>
+    <div class="stupac margina-mala">
+        <h5>Derivacija po Y</h5>
+        <h5>${yDerivacija}</h5>
+    </div>
+</div>
+<div class="stupac">
+    <p>Uneses x i y od točke u deriviranu jednadbu</p>
+    <p>*π(pi) se piše da uključiš CAPSLOCK, držiš ALT i upišeš 227 sa keypadom(brojevi desno, ne ovi u redu)</p>
+</div>
+<div>
+    <h5>Prva točka je = ${TockaRijesenje1}</h5>
+    <h5>Druga točka je = ${TockaRijesenje2}</h5>
+</div>
+<form hx-post="/GradijentPomocno" class="poravnaj" hx-target="#pomocno">
+    <h5>u = </h5>
+    <input type="number" name="vektor" id="">
+    <h5>i   </h5>
+    <input type="number" name="vektor" id="">
+    <h5>j</h5>
+</form>
+<div id="pomocno">
+    
+</div>
+
+<div>
+    <ol>
+        <li>
+            <p>Izvuci vektore smjera iz nazivnika i zapiši ih</p>
+            <div>
+                <img src="/images/paraleleniPravci/jednadba1.PNG" alt="">
+            </div>
+        </li>
+    </ol>
+</div>
+
+
+<div>
+    <p>L(X, Y, λ) = ${jednakost} + λ(${kruznica})</p>
+</div>
+
+<ol>
+    <li>
+        <p>U ovome zadatku imamo dvije "Jednadžbe", jednadžbu kružnice i jednadžbu temperature. To trebamo sve svesti u jednu jednadžbu sa lambda</p>
+          <figure>
+            <figcaption>Jednadžba Kružnice</figcaption>
+            <img src="/images/kruznica/Capture.PNG" alt="">
+          </figure>
+          <figure>
+            <figcaption>Jednadba rezultata</figcaption>
+            <img src="/images/kruznica/jednakost.PNG" alt="">
+          </figure>
+    </li>
+    <li>
+         <p>Prvo jednadžbu kružnice izjednači sa nulom(prebaci sve na lijevu stranu). U ovome slučaju:</p>
+          <h6>X<sup>2</sup>+ Y<sup>2</sup> = 98 -> X<sup>2</sup>+ Y<sup>2</sup> -98</h6>
+    </li>
+    <li>
+        <p>Kada to napraviš to moraš napisat u oblik sa lambdom(L(x,y,λ)=<u>Temperaturna jednadba</u> + λ(<u>Jednadba kruznice</u>))</p>
+          <p>Primjer bi bio:</p>
+          <div>
+            <h6>L(x,y,λ) = -3x + 2y -3 + λ(X<sup>2</sup>+ Y<sup>2</sup> -98)</h6>
+          </div>
+    </li>
+    <li>
+        <p>Nakon što to odradiš ti ide deriviranje po X, Y i λ. Primjer ovog deriviranja bi bio</p>
+        <p>Po X -> 2λx-3</p>
+        <p>Po Y -> 2λy+2</p>
+        <p>Po λ -> X<sup>2</sup>+ Y<sup>2</sup> -98</p>
+    </li>
+</ol>
+
+<div class="poravnaj">
+    <div class="margina-mala">
+        <h5>M = ${t[1]}</h5>
+    </div>
+    <div class="margina-mala">
+        <h5>N = ${t[2]}</h5>
+    </div>
+</div>
+
+<div class="poravnaj">
+    <div class="stupac">
+        <h6 class="bottom-border">${t[0]} - ${a[0]}</h6>
+        <h6>${vektor[0]}</h6>
+    </div>
+    <h6>=</h6>
+    <div class="stupac">
+        <h6 class="bottom-border">${t[1]} - ${a[1]}</h6>
+        <h6>${vektor[1]}</h6>
+    </div>
+    <h6>=</h6>
+    <div class="stupac">
+        <h6 class="bottom-border">${t[2]} - ${a[2]}</h6>
+        <h6>${vektor[2]}</h6>
+    </div>
+</div>
+
+
+<div class="poravnaj">
+    <h6>p... r=(</h6>
+    <input type="text" name="jednadba" id="">
+    <h6>,</h6>
+    <input type="text" name="jednadba" id="">
+    <h6>,</h6>
+    <input type="text" name="jednadba" id="">
+    <h6>)</h6>
+</div>
+
+<div class="poravnaj">
+    <div class="centriraj">
+        <div class="">
+            <h5>${slobodni[0]}</h5>
+            <hr>
+            <h5>${koeficijentiT[0]}</h5>
+        </div>
+    </div>
+</div>

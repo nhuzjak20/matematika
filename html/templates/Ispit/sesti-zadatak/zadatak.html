@@ -1,0 +1,110 @@
+<form hx-post="/rijesiKruznicu" hx-target="#rijesenje">
+    <div class="centriraj">
+        <div class="centriraj">
+            <h5>Jednadba kruznice(x,y) jednaka je</h5>
+            <input type="text" name="jednadba" id="">
+        </div>
+        <div>
+            <h5>Cemu je jednaka kruznica: </h5>
+            <input type="text" name="jednakost" id="">
+        </div>
+        <button type="submit">Podnesi zadatak</button>
+        <button type="submit">test</button>
+    </div> 
+</form>
+<div id="rijesenje"></div>
+<div class="accordion accordion-flush margina-mala" id="accordionFlushExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+          Postupak
+        </button>
+      </h2>
+      <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">
+        <ol>
+            <li>
+                <p>U ovome zadatku imamo dvije "Jednadžbe", jednadžbu kružnice i jednadžbu temperature. To trebamo sve svesti u jednu jednadžbu sa lambda</p>
+                  <figure>
+                    <figcaption>Jednadžba Kružnice</figcaption>
+                    <img src="/images/kruznica/Capture.PNG" alt="">
+                  </figure>
+                  <figure>
+                    <figcaption>Jednadba rezultata</figcaption>
+                    <img src="/images/kruznica/jednakost.PNG" alt="">
+                  </figure>
+            </li>
+            <li>
+                 <p>Prvo jednadžbu kružnice izjednači sa nulom(prebaci sve na lijevu stranu). U ovome slučaju:</p>
+                  <h6>X<sup>2</sup>+ Y<sup>2</sup> = 98 -> X<sup>2</sup>+ Y<sup>2</sup> -98</h6>
+            </li>
+            <li>
+                <p>Kada to napraviš to moraš napisat u oblik sa lambdom(L(x,y,λ)=<u>Temperaturna jednadba</u> + λ(<u>Jednadba kruznice</u>))</p>
+                  <p>Primjer bi bio:</p>
+                  <div>
+                    <h6>L(x,y,λ) = -3x + 2y -3 + λ(X<sup>2</sup>+ Y<sup>2</sup> -98)</h6>
+                  </div>
+            </li>
+            <li>
+                <p>Nakon što to odradiš ti ide deriviranje po X, Y i λ. Primjer ovog deriviranja bi bio</p>
+                <p>Po X -> 2λx-3</p>
+                <p>Po Y -> 2λy+2</p>
+                <p>Po λ -> X<sup>2</sup>+ Y<sup>2</sup> -98</p>
+            </li>
+            <li>
+              <p>Kada izderiviraš, iz svake te derivacije moraš napravit jednadžbu da izvučeš X i Y. U ovome slučaju bi to bilo:</p>
+              <div>
+                <h6>2λx-3 -> X = <sup>3</sup>&frasl;<sub>2λ</sub></h6>
+                <h6>2λy+2 -> Y = -<sup>1</sup>&frasl;<sub>λ</sub></h6>
+              </div>
+            </li>
+            <li>
+              <p>Nakon što si dobio koliko je X(<sup>3</sup>&frasl;<sub>2λ</sub>) i koliko je Y(-<sup>1</sup>&frasl;<sub>λ</sub>) moraš taj X i Y unest u jednadžbu kružnice. Ovdje bi dobio</p>
+              <h6>X<sup>2</sup> + Y<sup>2</sup> -98 = 0</h6>
+              <h6>(<sup>3</sup>&frasl;<sub>2λ</sub>)<sup>2</sup> + (-<sup>1</sup>&frasl;<sub>λ</sub>)<sup>2</sup> - 98 = 0</h6>
+              <p>Kada to pokvadriraš dobiješ:</p>
+              <h6><sup>9</sup>&frasl;<sub>4λ<sup>2</sup></sub> + <sup>1</sup>&frasl;<sub>λ<sup>2</sup></sub> - 98 = 0</h6>
+            </li>
+            <li>
+              <p>Kada si dobio tu jednadbu iz nje moras izvuč(izračunat) λ:</p>
+              <h6><sup>9</sup>&frasl;<sub>4λ<sup>2</sup></sub> + <sup>1</sup>&frasl;<sub>λ<sup>2</sup></sub> - 98 = 0</h6>
+              <p>U ovome slučaju ovo je kvadratna jednadžba gdje lambda bude:</p>
+              <h6>λ<sup>2</sup> = <sup>13</sup>&frasl;<sub>392</sub></h6>
+              <p>Budući da je na kvadrat lambda moraš korijenovat:</p>
+              <h6><span style="white-space: nowrap">
+                &radic;<span style="text-decoration:overline;">&nbsp;13/392&nbsp;</span>
+                </span></h6>
+              <u>Dobiješ dva rezultata: +0.1821 i -0.1821!!!</u>
+            </li>
+            <li>
+              <p>Kada dobiješ taj lambda, uneseš ga u jednadbe koje si dobio u koraku 5.</p>
+              <div>
+                <h6>X<sub>1</sub> = <sup>3</sup>&frasl;<sub>2*0.1821</sub></h6>
+                <h6>X<sub>2</sub> = <sup>3</sup>&frasl;<sub>2λ*(-0.1821)</sub></h6>
+                <h6>Y<sub>1</sub> = -<sup>1</sup>&frasl;<sub>0.1821</sub></h6>
+                <h6>Y<sub>2</sub> = -<sup>1</sup>&frasl;<sub>-0.1821</sub></h6>
+              </div>
+              <p>Kada to izračunamo dobijemo da su:</p>
+              <div class="poravnaj">
+                <div class="stupac">
+                 <h6>X<sub>1</sub> = 8.24</h6>
+                  <h6> X<sub>2</sub> = -8.24</h6>
+                </div>
+                <div class="stupac">
+                  <h6>Y<sub>1</sub> = -5.49</h6>
+                  <h6>Y<sub>2</sub> = 5.49</h6>
+                </div>
+              </div>
+            </li>
+            <li>
+              <p>Kada si dobio X<sub>1</sub>,X<sub>2</sub>, Y<sub>1</sub> i Y<sub>2</sub>, ubaciš u jednadžbu temperature u obliku:</p>
+              <h6>-3X<sub>1</sub> + 2Y<sub>1</sub> -3 = -3*8.24 + 2*(-5,49) - 3 = <u>-38.7</u> (najniža temperatura)</h6>
+              
+              <h6>-3X<sub>2</sub> + 2Y<sub>2</sub> -3 = -3*(-8.24) + 2*5,49 - 3 = <u>32.7 (najviša temperatura)</u></h6>
+              <u>Gdje je temperatura najviša i koji su X i Y uneseni, to su točke najviše temperature, za nisku isto ali obrnuto</u>
+            </li>
+        </ol>
+        </div>
+      </div>
+    </div>
+  </div>
