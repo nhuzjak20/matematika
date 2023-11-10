@@ -507,9 +507,37 @@ app.get('/kolokvij1DrugiZadatak', (req, res)=>{
     res.sendFile(__dirname + '/html/templates/prvi-kolokvij/Ravnina/zadatak.html')
 })
 
+app.get('/kolokvij1PrviZadatak', (req, res)=>{
+    res.sendFile(__dirname + '/html/templates/prvi-kolokvij/DveTočkeITočkaM/zadatak.html')
+})
+
+app.post('/kol1rijesi1', urlencodedParser, (req, res)=>{
+    const a = req.body.tockaA
+    const b = req.body.tockaB
+    const c = req.body.tockaC
+    console.log(a,b,c)
+    res.send(operacije.DvijeTockeItockaT(a, b, c))
+    
+})
+
 app.post('/rijesiZad4', urlencodedParser, (req, res) => {
     const Vsmjer1 = operacije.izvuciKoeficijenteIzJednadzbi(req.body.jednadbe)
     console.log(Vsmjer1)
+})
+
+app.get('/kolokvij1PetiZadatak', (req, res) => {
+    //res.send("Dobar dan")
+    res.sendFile(__dirname + '/html/templates/prvi-kolokvij/PetiZadatakPravacJednadbe/zadatak.html')
+})
+
+app.post('/kol1rijesi5', urlencodedParser, (req, res) => {
+    const jednadba = req.body.jednadba
+    const kanonskaGore = req.body.kanonskaGore
+    const kanonskaDolje= req.body.kanonskaDolje
+
+    console.log(jednadba)
+    
+    res.send(operacije.KoeficijentiJednadbe(jednadba, kanonskaDolje, kanonskaGore))
 })
 
 app.post('/kol1Rijesi4', urlencodedParser, (req, res) => {
